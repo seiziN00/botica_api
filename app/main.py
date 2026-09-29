@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.database import engine
 from app.models import Base
-from app.routers import productos
+from app.routers import productos, auth
 
 # Crear las tablas automáticamente si no existen
 Base.metadata.create_all(bind=engine)
@@ -13,6 +13,7 @@ app = FastAPI(
 )
 
 app.include_router(productos.router)
+app.include_router(auth.router)
 
 @app.get("/")
 def root():
