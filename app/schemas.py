@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 
 
 class ProductoBase(BaseModel):
@@ -17,3 +17,25 @@ class ProductoActualizar(ProductoBase):
 
 class ProductoRespuesta(ProductoBase):
     id: int
+
+
+
+# Para el Login
+class UsuarioLogin(BaseModel):
+    email: str
+    password: str
+
+# Para crear un usuario (manualmente por ahora)
+class UsuarioCrear(BaseModel):
+    nombre: str
+    email: str
+    password: str
+
+# Respuesta segura (sin password)
+class UsuarioRespuesta(BaseModel):
+    id: int
+    nombre: str
+    email: str
+    
+    class Config:
+        from_attributes = True
